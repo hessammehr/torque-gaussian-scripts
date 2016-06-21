@@ -1,6 +1,6 @@
 #!/bin/bash
 qsort_path=$(which qsort)
-if [ -x qsort_path]
+if [ -x "$qsort_path" ]
 then
 		watch -n 5 qsort
 else
