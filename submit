@@ -1,0 +1,38 @@
+#!/bin/bash 
+infile=$1
+hours=${2-1}
+procline=`grep -i nprocshared $infile`
+memline=`grep -i mem $infile`
+procs=${procline#*=}
+mem=${memline#*=}
+base=`echo "$infile" | cut -d'.' -f1`
+chkline="%chk=$base.chk"
+date=`date +%y-%m-%d-%R`
+pbsfile="submit-$base.pbs"
+
+# add checkpoint line to input file if not specified
+if ! grep -iq %chk $infile
+then 
+			echo "Checkpoint not specified. Adding $chkline to $infile."
+			sed -i "1i$chkline" $infile
+fi
+
+# clean up
+rm -f *.pbs.*
+
+cat <<EOF > $pbsfile
+#!/bin/bash 
+#PBS -S /bin/bash
+#PBS -l mem=$mem
+#PBS -l nodes=1:ppn=$procs
+#PBS -l walltime=$hours:00:00
+
+cd \$PBS_O_WORKDIR
+
+module load gaussian
+
+# Run g09 
+g09 < $infile > $base-$date.out
+EOF
+
+qsub $pbsfile
