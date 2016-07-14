@@ -7,7 +7,7 @@ procs=${procline#*=}
 mem=${memline#*=}
 base=`echo "$infile" | cut -d'.' -f1`
 chkline="%chk=$base.chk"
-date=`date +%y-%m-%d-%R`
+date=`date +%y-%m-%d-%H-%M-%S`
 pbsfile="submit-$base.pbs"
 
 # add checkpoint line to input file if not specified
