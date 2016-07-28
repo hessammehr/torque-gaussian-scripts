@@ -1,2 +1,2 @@
 #!/bin/bash
-find -name "*.out" | xargs tail -s 0.2 -f | grep --color -E "==>|Stationary.+|SCF Done.+|Step number.+|NO\s*$|YES\s*$|Converged\?|Normal termination.+"
+find -name "*.out" | xargs tail -s 0.2 -f | grep --color -E "==>|Stationary.+|SCF Done.+|Step number.+|NO\s*$|YES\s*$|Converged\?|Normal termination.+|$"

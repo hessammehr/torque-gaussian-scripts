@@ -29,6 +29,8 @@ cat <<EOF > $pbsfile
 
 cd \$PBS_O_WORKDIR
 
+echo "Job $base running on $(hostname)"
+
 module load gaussian
 
 # Run g09 
