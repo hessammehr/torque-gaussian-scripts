@@ -1,2 +1,4 @@
 #!/bin/bash
-find -name "*.out" | xargs tail -s 0.2 -f | grep --color -E "==>|Stationary.+|SCF Done.+|Step number.+|NO\s*$|YES\s*$|Converged\?|Normal termination.+|$"
+
+#find -name "*.out" | xargs tail -s 0.2 -f | grep --color -E "==>|Stationary.+|SCF Done.+|Step number.+|NO\s*$|YES\s*$|Converged\?|Normal termination.+|$"
+watch --no-title -n 5 "ls -t *.out | head -1 | xargs tail -v -n $(tput lines)"
