@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Finds the final SCF energy value in any output files under
+# the current subdirectory (recursively).
+
+find -name "*.out" -exec sh -c 'grep -H "SCF Done" {} | tail -n 1' \;
