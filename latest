@@ -1,0 +1,1 @@
+ls -t *.${1-out} | head -n ${2-1} | xargs less
